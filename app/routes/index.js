@@ -3,6 +3,7 @@ const questao = require("./questao.routes");
 const hardskill = require("./hardskill.routes");
 const aluno = require("./aluno.routes");
 const alunoHardskills = require("./aluno_hardskills.routes");
+const professor = require("./professor.routes");
 
 module.exports = app => {
 
@@ -12,4 +13,5 @@ module.exports = app => {
     app.use("/api/hardskill", hardskill);
     app.use("/api/aluno", aluno);
     app.use("/api/alunohardskills", alunoHardskills);
+    app.use("/api/professor", professor);
 }

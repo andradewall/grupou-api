@@ -13,7 +13,7 @@ exports.show = async (id) => {
 }
 // store POST usuario
 exports.store = async (usuario) => {
-	// Salva o usuário no banco, esperando o resultado do método (await) antes de inserir o valor em response 
+	// Salva o usuario no banco, esperando o resultado do método (await) antes de inserir o valor em response 
 	return await models.usuario.create(usuario, {
 		include: ["aluno", "questoes"]
 	});
