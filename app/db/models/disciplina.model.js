@@ -30,6 +30,15 @@ Disciplina.associate = (models) => {
         },
         as: "professor"
     })
+
+    Disciplina.belongsToMany(models.hardskill, {
+        through: "disciplina_hardskills",
+        timestamps: false,
+        foreignKey: {
+            name: "idDisciplina"
+        },
+        as: "hardskill"
+    })
 }
 
 
