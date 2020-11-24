@@ -24,14 +24,14 @@ Professor.associate = (models) => {
         as: "usuario"
     })
 
-    // Professor.belongsToMany(models.hardskill, {
-    //     through: "aluno_hardskill",
-    //     timestamps: false,
-    //     foreignKey: {
-    //         name: "idProfessor"
-    //     },
-    //     as: "hardskills"
-    // })
+    Professor.belongsToMany(models.disciplina, {
+        through: "professor_disciplina",
+        timestamps: false,
+        foreignKey: {
+            name: "idProfessor"
+        },
+        as: "disciplina"
+    })
 }
 
 module.exports = Professor; 
