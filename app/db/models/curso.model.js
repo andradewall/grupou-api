@@ -4,11 +4,12 @@ const sequelize = require("../index").getConn();
 // O name será o nome do arquivo sem ".model.js"
 const name = require("path").basename(__filename.replace(".model", ""), ".js");
 
-const Turma = sequelize.define(name, {
-    numero: {
-        type: DataTypes.INTEGER,
+const Curso = sequelize.define(name, {
+    nome: {
+        type: DataTypes.STRING(30),
     },
-    unidade: {
+    tipo: {
+        // mestrado, doutorado, graduação, pós-graduação...
         type: DataTypes.STRING(20),
     },
     createdAt: {
@@ -24,26 +25,25 @@ const Turma = sequelize.define(name, {
     tableName: name,
 });
 
-Turma.associate = (models) => {
+Curso.associate = (models) => {
 
-    Turma.belongsToMany(models.hardskill, {
-        through: "turma_hardskills",
-        timestamps: false,
-        foreignKey: {
-            name: "idTurma"
-        },
-        as: "hardskill"
-    })
-
-    Turma.belongsToMany(models.curso, {
+    Curso.belongsToMany(models.turma, {
         through: "turma_cursos",
         timestamps: false,
         foreignKey: {
-            name: "idTurma"
+            name: "idCurso"
         },
-        as: "curso"
+        as: "turma"
+    })
+
+    // Curso tem vários Aluno
+    Curso.hasMany(models.aluno, {
+        foreignKey: {
+            name: "idCurso"
+        },
+        as: "alunos"
     })
 }
 
 
-module.exports = Turma; 
+module.exports = Curso; 

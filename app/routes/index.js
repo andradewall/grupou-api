@@ -9,6 +9,8 @@ const disciplinaHardskills = require("./disciplina_hardskills.routes");
 const professorDisciplinas = require("./professor_disciplinas.routes");
 const turma = require("./turma.routes");
 const turmaHardskills = require("./turma_hardskills.routes");
+const curso = require("./curso.routes");
+const turmaCursos = require("./turma_cursos.routes");
 
 module.exports = app => {
 
@@ -24,4 +26,6 @@ module.exports = app => {
     app.use("/api/professordisciplinas", professorDisciplinas);
     app.use("/api/turma", turma);
     app.use("/api/turmahardskills", turmaHardskills);
+    app.use("/api/curso", curso);
+    app.use("/api/turmacursos", turmaCursos);
 }

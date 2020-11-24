@@ -3,14 +3,14 @@ const models = require("../db/models");
 // index GET ALL 
 exports.index = async () => {
 	return await models.turma.findAll({
-		include: ["hardskill"]
+		include: ["hardskill", "curso"]
 	});
 }
 
 // show GET ID
 exports.show = async (id) => {
 	return await models.turma.findByPk(id, {
-		include: ["hardskill"]
+		include: ["hardskill", "curso"]
 	});
 }
 // store POST turma
