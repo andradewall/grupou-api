@@ -1,4 +1,4 @@
-const {DataTypes, DATE} = require("sequelize");
+const { DataTypes, DATE } = require("sequelize");
 const sequelize = require("../index").getConn();
 
 // O name será o nome do arquivo sem ".model.js"
@@ -38,6 +38,15 @@ Hardskill.associate = (models) => {
             name: "idHardskill"
         },
         as: "disciplina"
+    })
+
+    Hardskill.belongsToMany(models.turma, {
+        through: "turma_hardskills",
+        timestamps: false,
+        foreignKey: {
+            name: "idHardskill"
+        },
+        as: "turma"
     })
 }
 
