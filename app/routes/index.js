@@ -11,6 +11,7 @@ const turma = require("./turma.routes");
 const turmaHardskills = require("./turma_hardskills.routes");
 const curso = require("./curso.routes");
 const turmaCursos = require("./turma_cursos.routes");
+const questaodia = require("./questaodia.routes");
 
 module.exports = app => {
 
@@ -28,4 +29,5 @@ module.exports = app => {
     app.use("/api/turmahardskills", turmaHardskills);
     app.use("/api/curso", curso);
     app.use("/api/turmacursos", turmaCursos);
+    app.use("/api/questaodia", questaodia);
 }
