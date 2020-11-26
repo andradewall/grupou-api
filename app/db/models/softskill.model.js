@@ -4,18 +4,9 @@ const sequelize = require("../index").getConn();
 // O name será o nome do arquivo sem ".model.js"
 const name = require("path").basename(__filename.replace(".model", ""), ".js");
 
-const Tarefa = sequelize.define(name, {
-    nome: {
-        type: DataTypes.STRING(30),
-    },
-    dataInicio: {
-        type: DataTypes.DATE,
-    },
-    dataTermino: {
-        type: DataTypes.DATE,
-    },
-    nota: {
-        type: DataTypes.DECIMAL(4, 2),
+const Softskill = sequelize.define(name, {
+    descricao: {
+        type: DataTypes.STRING(50),
     },
     createdAt: {
         type: DataTypes.DATE,
@@ -30,21 +21,25 @@ const Tarefa = sequelize.define(name, {
     tableName: name,
 });
 
-Tarefa.associate = (models) => {
-
-    Tarefa.belongsTo(models.grupo, {
+Softskill.associate = (models) => {
+    Softskill.belongsToMany(models.aluno, {
+        through: "aluno_softskill",
+        timestamps: false,
         foreignKey: {
-            name: "idGrupo"
-        },
-        as: "grupo"
-    })
-    
-    Tarefa.belongsTo(models.aluno, {
-        foreignKey: {
-            name: "idAluno"
+            name: "idSoftskill"
         },
         as: "aluno"
     })
+
+    Softskill.belongsToMany(models.avaliacao360, {
+        through: "avaliacao360_softskills",
+        timestamps: false,
+        foreignKey: {
+            name: "idSoftskill"
+        },
+        as: "avaliacao360"
+    })
 }
 
-module.exports = Tarefa; 
+
+module.exports = Softskill; 

@@ -3,14 +3,14 @@ const models = require("../db/models");
 // index GET ALL 
 exports.index = async () => {
 	return await models.tarefa.findAll({
-		// include: ["hardskill", "curso"]
+		include: ["aluno", "grupo"]
 	});
 }
 
 // show GET ID
 exports.show = async (id) => {
 	return await models.tarefa.findByPk(id, {
-		// include: ["hardskill", "curso"]
+		include: ["aluno", "grupo"]
 	});
 }
 // store POST tarefa

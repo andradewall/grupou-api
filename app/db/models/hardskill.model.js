@@ -31,6 +31,15 @@ Hardskill.associate = (models) => {
         as: "aluno"
     })
 
+    Hardskill.belongsToMany(models.atividadeavaliativa, {
+        through: "atividadeavaliativa_hardskills",
+        timestamps: false,
+        foreignKey: {
+            name: "idHardskill"
+        },
+        as: "hardskill"
+    })
+
     Hardskill.belongsToMany(models.disciplina, {
         through: "disciplina_hardskills",
         timestamps: false,

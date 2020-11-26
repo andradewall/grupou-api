@@ -24,12 +24,12 @@ Aluno.associate = (models) => {
         as: "usuario"
     })
 
-    // Aluno pertence à uma Turma
-    Aluno.belongsTo(models.turma, {
+    // Aluno pertence à um Curso
+    Aluno.belongsTo(models.curso, {
         foreignKey: {
-            name: "idTurma"
+            name: "idCurso"
         },
-        as: "turma"
+        as: "curso"
     })
 
     Aluno.belongsToMany(models.hardskill, {
@@ -39,6 +39,33 @@ Aluno.associate = (models) => {
             name: "idAluno"
         },
         as: "hardskills"
+    })
+
+    Aluno.belongsToMany(models.softskill, {
+        through: "aluno_softskill",
+        timestamps: false,
+        foreignKey: {
+            name: "idAluno"
+        },
+        as: "softskills"
+    })
+
+    Aluno.belongsToMany(models.grupo, {
+        through: "grupo_alunos",
+        timestamps: false,
+        foreignKey: {
+            name: "idGrupo"
+        },
+        as: "grupos"
+    })
+
+    Aluno.belongsToMany(models.turma, {
+        through: "turma_alunos",
+        timestamps: false,
+        foreignKey: {
+            name: "idTurma"
+        },
+        as: "turma"
     })
 }
 

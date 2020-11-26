@@ -4,10 +4,7 @@ const sequelize = require("../index").getConn();
 // O name será o nome do arquivo sem ".model.js"
 const name = require("path").basename(__filename.replace(".model", ""), ".js");
 
-const Tarefa = sequelize.define(name, {
-    nome: {
-        type: DataTypes.STRING(30),
-    },
+const Atividadeavaliativa = sequelize.define(name, {
     dataInicio: {
         type: DataTypes.DATE,
     },
@@ -30,21 +27,23 @@ const Tarefa = sequelize.define(name, {
     tableName: name,
 });
 
-Tarefa.associate = (models) => {
+Atividadeavaliativa.associate = (models) => {
 
-    Tarefa.belongsTo(models.grupo, {
+    Atividadeavaliativa.belongsToMany(models.hardskill, {
+        through: "atividadeavaliativa_hardskills",
+        timestamps: false,
         foreignKey: {
-            name: "idGrupo"
+            name: "idAtividadeavaliativa"
         },
-        as: "grupo"
+        as: "atividadeavaliativa"
     })
-    
-    Tarefa.belongsTo(models.aluno, {
+
+    Atividadeavaliativa.belongsTo(models.turma, {
         foreignKey: {
-            name: "idAluno"
+            name: "idTurma"
         },
-        as: "aluno"
+        as: "turma"
     })
 }
 
-module.exports = Tarefa; 
+module.exports = Atividadeavaliativa; 

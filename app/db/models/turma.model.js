@@ -26,6 +26,22 @@ const Turma = sequelize.define(name, {
 
 Turma.associate = (models) => {
 
+    Turma.belongsTo(models.disciplina, {
+        foreignKey: {
+            name: "idDisciplina"
+        },
+        as: "disciplina"
+    })
+
+    Turma.belongsToMany(models.professor, {
+        through: "professor_turmas",
+        timestamps: false,
+        foreignKey: {
+            name: "idTurma"
+        },
+        as: "professor"
+    })
+    
     Turma.belongsToMany(models.hardskill, {
         through: "turma_hardskills",
         timestamps: false,
@@ -43,7 +59,15 @@ Turma.associate = (models) => {
         },
         as: "curso"
     })
-}
 
+    Turma.belongsToMany(models.aluno, {
+        through: "turma_alunos",
+        timestamps: false,
+        foreignKey: {
+            name: "idAluno"
+        },
+        as: "aluno"
+    })
+}
 
 module.exports = Turma; 

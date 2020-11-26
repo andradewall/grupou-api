@@ -1,12 +1,6 @@
 const models = require("../db/models");
 const db = require("../db/models")
 
-
-/*
-hardskills
-- descricao: PHP 7.3
-- descricao: JavaScript ECMA 6
-*/
 let newAlunoHardskills = [];
 exports.store = async (objeto, idAluno) => {
     const aluno = await models.aluno.findOne({
@@ -27,10 +21,6 @@ exports.store = async (objeto, idAluno) => {
     aluno.addHardskill(newAlunoHardskills);
 
     return true;
-}
-
-exports.show = async () => {
-
 }
 
 exports.destroy = async (objeto, idAluno) => {
